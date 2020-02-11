@@ -61,7 +61,7 @@ const char     CRYPTONOTE_BLOCKCHAIN_INDICES_FILENAME[]      = "blockchainindice
 const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json";
 } // parameters
 
-const char     CRYPTONOTE_NAME[]                             = "nilcoin";
+const char     CRYPTONOTE_NAME[]                             = "cryptonote";
 const char     GENESIS_COINBASE_TX_HEX[]                     = "010501ff0001ffffffffffffff3f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210196152eb898b2fc1fa096fbff00c8b440b9eccfbd2e4c58894011e99ea275bbb0";
 const uint8_t  CURRENT_TRANSACTION_VERSION                   =  1;
 const uint8_t  BLOCK_MAJOR_VERSION_1                         =  1;
