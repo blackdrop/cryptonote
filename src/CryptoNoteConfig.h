@@ -13,24 +13,24 @@ namespace parameters {
 const uint64_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
 const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 1000000000;
-const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 0x4851;
-const size_t   CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW          = 5;
+const uint64_t CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX       = 0x4851;  // all addresses will have `c42` as a prefix
+const size_t   CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW          = 5;  // i.e. mining rewards are unlocked after 5 blocks
 const uint64_t CRYPTONOTE_BLOCK_FUTURE_TIME_LIMIT            = 60 * 60 * 2;
 
 const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW             = 60;
 
-const uint64_t MONEY_SUPPLY                                  = ((uint64_t)(-1));
-const unsigned EMISSION_SPEED_FACTOR                         = 9;
+const uint64_t MONEY_SUPPLY                                  = ((uint64_t)(-1));  // total amount of mineable coins
+const unsigned EMISSION_SPEED_FACTOR                         = 18;
 static_assert(EMISSION_SPEED_FACTOR <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
 
 const size_t   CRYPTONOTE_REWARD_BLOCKS_WINDOW               = 100;
 const size_t   CRYPTONOTE_BLOCK_GRANTED_FULL_REWARD_ZONE     = 10000; //size of block (bytes) after which reward for block calculated using block size
 const size_t   CRYPTONOTE_COINBASE_BLOB_RESERVED_SIZE        = 600;
 const size_t   CRYPTONOTE_DISPLAY_DECIMAL_POINT              = 8;
-const uint64_t MINIMUM_FEE                                   = UINT64_C(10);
+const uint64_t MINIMUM_FEE                                   = UINT64_C(10); // TXs with lower will be rejected by nodes
 const uint64_t DEFAULT_DUST_THRESHOLD                        = MINIMUM_FEE;
 
-const uint64_t DIFFICULTY_TARGET                             = 5; // seconds
+const uint64_t DIFFICULTY_TARGET                             = 5; // i.e. every 5 seconds new block is generated
 const uint64_t EXPECTED_NUMBER_OF_BLOCKS_PER_DAY             = 24 * 60 * 60 / DIFFICULTY_TARGET;
 const size_t   DIFFICULTY_WINDOW                             = EXPECTED_NUMBER_OF_BLOCKS_PER_DAY; // blocks
 const size_t   DIFFICULTY_CUT                                = 60;  // timestamps to cut after sorting
@@ -62,6 +62,9 @@ const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json"
 } // parameters
 
 const char     CRYPTONOTE_NAME[]                             = "cryptonote";
+
+// This TX's hex is decoded and used as a base TX to mine the first (genesis)
+// block, see `cryptonote/src/CryptoNoteCore/Currency.cpp:75` for details:
 const char     GENESIS_COINBASE_TX_HEX[]                     = "010501ff0001ffffffffffffff3f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210196152eb898b2fc1fa096fbff00c8b440b9eccfbd2e4c58894011e99ea275bbb0";
 const uint8_t  CURRENT_TRANSACTION_VERSION                   =  1;
 const uint8_t  BLOCK_MAJOR_VERSION_1                         =  1;

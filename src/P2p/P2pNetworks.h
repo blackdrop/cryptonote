@@ -6,5 +6,8 @@
 
 namespace CryptoNote
 {
+  // This UUIDs should be unique to differentiate one CryptoNote network from
+  // another. This diverges from the base repository by simply reordering
+  // values:
   const static boost::uuids::uuid CRYPTONOTE_NETWORK = { { 0x54, 0x12, 0x10, 0x43, 0x50, 0x54, 0x4f, 0x11, 0x01, 0x10, 0x4e, 0x4f, 0x52, 0x59, 0x45, 0x00 } };
 }
