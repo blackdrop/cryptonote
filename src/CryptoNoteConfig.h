@@ -64,8 +64,23 @@ const char     MINER_CONFIG_FILE_NAME[]                      = "miner_conf.json"
 const char     CRYPTONOTE_NAME[]                             = "cryptonote";
 
 // This TX's hex is decoded and used as a base TX to mine the first (genesis)
-// block, see `cryptonote/src/CryptoNoteCore/Currency.cpp:75` for details:
-const char     GENESIS_COINBASE_TX_HEX[]                     = "010501ff0001ffffffffffffff3f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd088071210196152eb898b2fc1fa096fbff00c8b440b9eccfbd2e4c58894011e99ea275bbb0";
+// block, see `cryptonote/src/CryptoNoteCore/Currency.cpp:75` for details.
+//
+// Note, that this hex packs mining reward for the first block as well as a
+// miner address. This hex *must* be regenerated after any configuration params
+// have been changed because it can lead to weird errors otherwise. For
+// instance, if `EMISSION_SPEED_FACTOR` has been changed to a bigger value
+// (i.e. 9 -> 18), the genesis block won't be generated because of rewards
+// mismatch:
+//   ...
+//   INFO  Blockchain not loaded, generating genesis block.
+//   ERROR Coinbase transaction spend too much money: 360287970.18963967, block reward is 703687.44177663
+//   INFO  Block <f3444da6a1c146e558ce7531599a1efcfcce27343ef038f138a4727159094c66> has invalid miner transaction
+//   ERROR Failed to add genesis block to blockchain
+//   ERROR Failed to initialize blockchain storage
+//   ERROR Failed to initialize core
+//   ...
+const char     GENESIS_COINBASE_TX_HEX[]                     = "010501ff0001ffffffffffff0f029b2e4c0281c0b02e7c53291a94d1d0cbff8883f8024f5142ee494ffbbd0880712101c4310cdbeb287ff60e93a73014ac7843b07328d59d4d8167fe1b58ba9f746c60";
 const uint8_t  CURRENT_TRANSACTION_VERSION                   =  1;
 const uint8_t  BLOCK_MAJOR_VERSION_1                         =  1;
 const uint8_t  BLOCK_MINOR_VERSION_0                         =  0;
